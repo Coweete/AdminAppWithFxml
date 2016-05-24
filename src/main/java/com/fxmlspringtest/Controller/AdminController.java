@@ -97,6 +97,7 @@ public class AdminController {
     }
 
     public void logout() {
+        serverService.logout();
         currentUser = null;
         screens.setLoginScene();
     }

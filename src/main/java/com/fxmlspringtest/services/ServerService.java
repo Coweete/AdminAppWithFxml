@@ -29,6 +29,7 @@ public class ServerService {
     //private String url = "http://192.168.1.46:44344/api/users";
     private String loginUrl = "https://projektessence.se/api/account";
     //private String loginUrl = "http://192.168.1.46:44344/api/account";
+    private String logoutUrl = "https://projektessence.se/logout";
 
     private static final Logger log = LoggerFactory.getLogger(ServerService.class);
     private RestTemplate restTemplate;
@@ -227,4 +228,15 @@ public class ServerService {
     }
 
 
+    public void logout() {
+        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+        try{
+            ResponseEntity<String> responseEntity = restTemplate.exchange(logoutUrl,HttpMethod.POST,httpEntity,String.class);
+            log.info(responseEntity.getStatusCode().toString());
+        }catch (HttpClientErrorException e){
+            log.info("HttpLogout " + e.toString());
+        }catch (Exception e){
+            log.info("Logout " + e.toString());
+        }
+    }
 }

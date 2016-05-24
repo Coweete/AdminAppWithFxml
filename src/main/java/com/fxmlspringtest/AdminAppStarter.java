@@ -14,18 +14,18 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication
-public class TestingfxmlspringApplication extends Application{
+public class AdminAppStarter extends Application{
 
 	private AdminController controller;
 	private ServerService serverService;
 	private RxTxService rxTxService;
 	private static ConfigurableApplicationContext applicationContext;
-	private static final Logger log = org.slf4j.LoggerFactory.getLogger(TestingfxmlspringApplication.class);
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(AdminAppStarter.class);
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		log.info("JAVAFX STARTING");
-		ApplicationContext context = new AnnotationConfigApplicationContext(TestingfxmlspringApplication.class);
+		ApplicationContext context = new AnnotationConfigApplicationContext(AdminAppStarter.class);
 		ScreenConfiguration screenConfiguration = ScreenConfiguration.getInstance();
 		screenConfiguration.init(primaryStage,controller);
 		controller.setScreens(screenConfiguration);
@@ -34,7 +34,7 @@ public class TestingfxmlspringApplication extends Application{
 
 	public void init() throws Exception{
 		log.info("STARTING ADMIN APP");
-		SpringApplication app = new SpringApplication(TestingfxmlspringApplication.class);
+		SpringApplication app = new SpringApplication(AdminAppStarter.class);
 		app.setWebEnvironment(false);
 		applicationContext = app.run();
 		applicationContext.getAutowireCapableBeanFactory().autowireBean(app);
