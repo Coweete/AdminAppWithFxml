@@ -1,0 +1,69 @@
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryLight">#BBDEFB</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FF5722</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorTextDark">#c4c4c4</color>
+    <color name="colorDivider">#B6B6B6</color>
+    <color name="navDrawerHeader">#005e73</color>
+    <color name="navDrawerBackground">#fff5f5f5</color>
+    <color name="black">#000000</color>
+    <color name="faded">#80000000</color>
+    <color name="colorStamp">#4043a047</color>
+    <color name="colorSchedule">#403f51b5</color>
+    <color name="colorAccentFaded">#40ff5722</color>
+
+    <color name="c0">#F44336</color>
+    <color name="c1">#2196F3</color>
+    <color name="c2">#4CAF50</color>
+    <color name="c3">#FF9800</color>
+    <color name="c4">#673AB7</color>
+    <color name="c5">#880E4F</color>
+    <color name="c6">#FFEB3B</color>
+    <color name="c7">#009688</color>
+</resources>
+
+
+#btnLogout{
+    -fx-background-color: #1976D2;
+    -fx-border-color: #BBDEFB;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnQuit{
+    -fx-background-color: #2196F3;
+    -fx-border-color: #BBDEFB;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnAddUser{
+    -fx-background-color: #2196F3;
+    -fx-border-color: #BBDEFB;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnDeleteUser{
+    -fx-background-color: #2196F3;
+    -fx-border-color: #BBDEFB;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnUpdateUser{
+    -fx-background-color: #2196F3;
+    -fx-border-color: #BBDEFB;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnUpdateList{
+    -fx-background-color: #2196F3;
+    -fx-border-color: #BBDEFB;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}

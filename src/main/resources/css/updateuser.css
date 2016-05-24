@@ -1,0 +1,41 @@
+#background{
+    -fx-background-color: #2196F3;
+}
+#header{
+    -fx-background-color: #1976D2;
+}
+#headerText{
+    -fx-font-family: Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    -fx-font-smoothing-type: gray;
+    -fx-font-size: 25px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bolder;
+}
+.button{
+    -fx-background-color: #2196F3;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+.button:hover{
+    -fx-background-color: #249cff;
+}
+.label{
+    -fx-font-family: Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    -fx-font-smoothing-type: gray;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bolder;
+}
+.text-field{
+    -fx-background-color: #BBDEFB;
+    -fx-border-color: #1976D2;
+    -fx-text-fill: #000000;
+    -fx-prompt-text-fill: #737373;
+}
+.password-field{
+    -fx-background-color: #BBDEFB;
+    -fx-border-color: #1976D2;
+    -fx-text-fill: #000000;
+    -fx-prompt-text-fill: #737373;
+}

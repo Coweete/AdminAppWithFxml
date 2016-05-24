@@ -1,0 +1,34 @@
+
+#mainBackground{
+    -fx-background-color: #2196F3;
+}
+#mainHeader{
+    -fx-background-color: #1976D2;
+}
+#mainBottom{
+    -fx-background-color: #2196F3;
+}
+.button{
+    -fx-background-color: #2196F3;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+.button:hover{
+    -fx-background-color: #249cff;
+}
+#btnLogout{
+    -fx-background-color: #1976D2;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnLogout:hover{
+     -fx-background-color: #1988e6;
+}
+.label{
+    -fx-font-family: Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    -fx-font-smoothing-type: gray;
+    -fx-font-size: 15px;
+    -fx-text-fill: #FFFFFF;
+}

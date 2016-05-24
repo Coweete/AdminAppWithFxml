@@ -1,0 +1,38 @@
+#loginMainLayout{
+    -fx-background-color:#2196F3;
+}
+#loginHeader{
+    -fx-background-color: #1976D2;
+}
+#btnSignin{
+    -fx-background-color: #1976D2;
+    -fx-font: italic;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+
+}
+#btnSignin:hover{
+    -fx-background-color: #1988e6;
+}
+#username{
+    -fx-background-color: #BBDEFB;
+    -fx-border-color: #1976D2;
+    -fx-text-fill: #000000;
+}
+#password{
+    -fx-background-color: #BBDEFB;
+    -fx-border-color: #1976D2;
+    -fx-text-fill: #000000;
+}
+#textEssence{
+    -fx-font-family: Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    -fx-font-smoothing-type: gray;
+    -fx-font-size: 24px;
+    -fx-text-fill: #FFFFFF;
+}
+#txtError{
+    -fx-font-family: Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    -fx-font-smoothing-type: gray;
+    -fx-font-size: 10px;
+    -fx-text-fill: #FFFFFF;
+}

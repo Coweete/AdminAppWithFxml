@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.TextField?>
+<VBox fx:id="background" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../css/error.css" fx:controller="com.fxmlspringtest.guiController.ErrorController">
+   <children>
+      <FlowPane fx:id="header" alignment="CENTER" columnHalignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ic_error_outline_white_24dp.png" />
+               </image></ImageView>
+         </children>
+      </FlowPane>
+      <VBox>
+         <children>
+            <FlowPane alignment="CENTER">
+               <children>
+                  <Text fx:id="txtError" text="Error text here">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </Text>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER">
+               <children>
+                  <Button fx:id="btnOk" onAction="#cancel" mnemonicParsing="false" text="Ok">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
+         </children>
+      </VBox>
+   </children>
+</VBox>

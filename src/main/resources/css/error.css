@@ -1,0 +1,22 @@
+#background{
+    -fx-background-color: #e57373;
+}
+#header{
+    -fx-background-color: #f44336;
+}
+#txtError{
+    -fx-font-family: Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    -fx-font-smoothing-type: gray;
+    -fx-font-size: 15px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnOk{
+    -fx-background-color: #e57373;
+    -fx-font: italic;
+    -fx-font-size: 20px;
+    -fx-text-fill: #FFFFFF;
+}
+#btnOk:hover{
+    -fx-background-color: #f58181;
+
+}
