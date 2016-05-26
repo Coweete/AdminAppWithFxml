@@ -21,6 +21,7 @@ public class MainViewController implements DialogController {
 
     private AdminController controller;
     private Account[] userArray;
+    private Account currentUser;
 
     @FXML
     ListView<String> listView;
@@ -63,7 +64,9 @@ public class MainViewController implements DialogController {
 
     public void updateUser(ActionEvent actionEvent) {
         int res = listView.getSelectionModel().getSelectedIndex();
-        if(controller.getCurrentUser().getUsername().equals(userArray[res].getUsername())){
+        System.out.println( "Result" + res);
+        System.out.println("CurrentUser " + currentUser.getUsername() );
+        if(currentUser.getUsername().equals(userArray[res].getUsername())){
             controller.showError("Cant update current user");
         }else {
             if(res == -1){
@@ -75,6 +78,7 @@ public class MainViewController implements DialogController {
     }
 
     public void onStart(Account adminUser){
+        currentUser = adminUser;
         lblFirstname.setText(adminUser.getFirstName());
         lblLastname.setText(adminUser.getLastName() );
         listView.getFocusModel().focus(0);

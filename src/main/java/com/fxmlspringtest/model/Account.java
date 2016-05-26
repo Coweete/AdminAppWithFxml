@@ -168,6 +168,7 @@ public class Account implements UserDetails, Serializable {
         firstName = (String) accountMap.get("firstName");
         lastName = (String) accountMap.get("lastName");
         id = (String) accountMap.get("id");
+        username = (String) accountMap.get("username");
         accountNonExpired = (Boolean) accountMap.get("accountNonExpired");
         enabled = (Boolean) accountMap.get("enabled");
         if(accountMap.get("rfidKey") != null)
