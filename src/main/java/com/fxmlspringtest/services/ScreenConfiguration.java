@@ -139,4 +139,13 @@ public class ScreenConfiguration {
             updateUserController.writeScanAndErrorMessage(status);
         }
     }
+
+    public void updateScanNumber(int sceneNumber) {
+        System.out.println("hello");
+        if(sceneNumber== 1){
+            addUserController.updatScanButon();
+        }else if(sceneNumber == 2){
+            updateUserController.updateScanButton();
+        }
+    }
 }

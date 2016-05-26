@@ -66,12 +66,12 @@ public class MainViewController implements DialogController {
         int res = listView.getSelectionModel().getSelectedIndex();
         System.out.println( "Result" + res);
         System.out.println("CurrentUser " + currentUser.getUsername() );
-        if(currentUser.getUsername().equals(userArray[res].getUsername())){
-            controller.showError("Cant update current user");
-        }else {
-            if(res == -1){
-                controller.showError("Error you need to choose an account");
-            }else{
+        if(res == -1){
+            controller.showError("Error you need to choose an account");
+        }else{
+            if(currentUser.getUsername().equals(userArray[res].getUsername())){
+                controller.showError("Cant update current user");
+            }else {
                 controller.showUpdateUserDialog(userArray[res]);
             }
         }
@@ -96,8 +96,12 @@ public class MainViewController implements DialogController {
         if(res == -1){
             controller.showError("Error you need to choose an account");
         }else{
-            controller.deleteUser(userArray[res]);
-            setListView();
+            if(currentUser.getUsername().equals(userArray[res].getUsername())){
+                controller.showError("Cant delete the selected user");
+            }else {
+                controller.deleteUser(userArray[res]);
+                setListView();
+            }
         }
     }
 

@@ -226,4 +226,8 @@ public class AdminController {
         String realText = text.toUpperCase();
         rxTxService.setCompPort(realText);
     }
+
+    public void scanButton(int sceneNumber) {
+        screens.updateScanNumber(sceneNumber);
+    }
 }

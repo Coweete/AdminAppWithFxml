@@ -74,6 +74,7 @@ public class RxTxService {
         }
         if (portId == null) {
             System.out.println("Could not find COM port.");
+            ctrl.scanButton(sceneNumber);
             ctrl.showError("No connection to the arduino " + compPort);
             return;
         }

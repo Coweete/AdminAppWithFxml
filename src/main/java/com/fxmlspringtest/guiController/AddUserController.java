@@ -65,6 +65,7 @@ public class AddUserController implements DialogController {
     public void scanCard(ActionEvent actionEvent) {
         adminController.scanCard(1);
         btnScanCard.setDisable(true);
+        System.out.println("Button state" + btnScanCard.isDisable());
         scanCardActive = true;
     }
 
@@ -138,14 +139,18 @@ public class AddUserController implements DialogController {
      * @param scanStatus that should be delivered
      */
     public void scanStatus(String scanStatus) {
-        if(btnScanCard.isDisabled() == true){
-            btnScanCard.setDisable(false);
-        }
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 txtError.setText(scanStatus);
             }
         });
+    }
+
+    public void updatScanButon() {
+        System.out.println("Button status" + btnScanCard.isDisable());
+        if(btnScanCard.isDisabled() == true){
+            btnScanCard.setDisable(false);
+        }
     }
 }
