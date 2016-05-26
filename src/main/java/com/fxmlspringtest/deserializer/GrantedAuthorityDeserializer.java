@@ -31,9 +31,11 @@ public class GrantedAuthorityDeserializer extends JsonDeserializer<List<GrantedA
         JsonNode node = oc.readTree(jsonParser);
 
         node.forEach(jsonNode -> {
-            auths.add(new SimpleGrantedAuthority(jsonNode.get("authority").asText()));
+            SimpleGrantedAuthority tempAuth = (new SimpleGrantedAuthority(jsonNode.get("authority").asText()));
+            auths.add(tempAuth);
         });
 
+        log.info("ret auths: "+auths.toString());
         return auths;
     }
 }

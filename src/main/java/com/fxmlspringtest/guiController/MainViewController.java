@@ -47,40 +47,48 @@ public class MainViewController implements DialogController {
         this.controller = controller;
     }
 
-    public MainViewController(AdminController controller){
+    public MainViewController(AdminController controller) {
         this.controller = controller;
     }
 
 
-    public void setListView(){
-        userArray =  controller.getUserlist();
-        if(userArray != null){
+    public void setListView() {
+        userArray = controller.getUserlist();
+        if (userArray != null) {
             listView.getItems().clear();
             for (int i = 0; i < userArray.length; i++) {
-                listView.getItems().add(i,userArray[i].getFirstName() + " " + userArray[i].getLastName());
+                listView.getItems().add(i, userArray[i].getFirstName() + " " + userArray[i].getLastName());
             }
         }
     }
 
     public void updateUser(ActionEvent actionEvent) {
         int res = listView.getSelectionModel().getSelectedIndex();
-        System.out.println( "Result" + res);
-        System.out.println("CurrentUser " + currentUser.getUsername() );
-        if(res == -1){
+        System.out.println("Result" + res);
+        System.out.println("CurrentUser " + currentUser.getUsername());
+        if (res == -1) {
             controller.showError("Error you need to choose an account");
-        }else{
-            if(currentUser.getUsername().equals(userArray[res].getUsername())){
+        } else {
+            if (currentUser.getUsername().equals(userArray[res].getUsername())) {
                 controller.showError("Cant update current user");
-            }else {
-                controller.showUpdateUserDialog(userArray[res]);
+            } else {
+                for (int i = 0; i < userArray[res].getAuthorities().size(); i++) {
+                    if (userArray[res].getAuthorities().get(i).toString().equals("ROLE_PI")) {
+                        System.out.println("hejdå");
+                        controller.showError("Cant update an pi user");
+                    } else {
+                        System.out.println("hello");
+                        controller.showUpdateUserDialog(userArray[res]);
+                    }
+                }
             }
         }
     }
 
-    public void onStart(Account adminUser){
+    public void onStart(Account adminUser) {
         currentUser = adminUser;
         lblFirstname.setText(adminUser.getFirstName());
-        lblLastname.setText(adminUser.getLastName() );
+        lblLastname.setText(adminUser.getLastName());
         listView.getFocusModel().focus(0);
         System.out.println(listView.getFocusModel().getFocusedIndex());
         setListView();
@@ -93,14 +101,22 @@ public class MainViewController implements DialogController {
 
     public void deleteUser(ActionEvent actionEvent) {
         int res = listView.getSelectionModel().getSelectedIndex();
-        if(res == -1){
+        if (res == -1) {
             controller.showError("Error you need to choose an account");
-        }else{
-            if(currentUser.getUsername().equals(userArray[res].getUsername())){
+        } else {
+            if (currentUser.getUsername().equals(userArray[res].getUsername())) {
                 controller.showError("Cant delete the selected user");
-            }else {
-                controller.deleteUser(userArray[res]);
-                setListView();
+            } else {
+                for (int i = 0; i < userArray[res].getAuthorities().size(); i++) {
+                    if (userArray[res].getAuthorities().get(i).toString().equals("ROLE_PI") ||
+                            userArray[res].getAuthorities().get(i).toString().equals("ROLE_ADMIN") ) {
+                        System.out.println("hejdå");
+                        controller.showError("Cant delete pi user");
+                    } else {
+                        controller.deleteUser(userArray[res]);
+                        setListView();
+                    }
+                }
             }
         }
     }
@@ -110,7 +126,7 @@ public class MainViewController implements DialogController {
     }
 
     public void changePort(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)){
+        if (event.getCode().equals(KeyCode.ENTER)) {
             controller.changeArduinoPort(txtArduino.getText());
         }
     }

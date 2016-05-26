@@ -103,7 +103,10 @@ public class ServerService {
         try {
             HttpEntity<String> requestEntity = new HttpEntity<>(headers);
             ResponseEntity<Account[]> responseEntity = restTemplate.exchange(url,HttpMethod.GET,requestEntity,Account[].class);
+
+            ResponseEntity<String> responseEntity2 = restTemplate.exchange(url,HttpMethod.GET,requestEntity,String.class);
             log.info(Arrays.toString(responseEntity.getBody()));
+            log.info(responseEntity2.getBody());
             return responseEntity.getBody();
         } catch (HttpClientErrorException e) {
             log.error(e.getStatusCode().toString());
