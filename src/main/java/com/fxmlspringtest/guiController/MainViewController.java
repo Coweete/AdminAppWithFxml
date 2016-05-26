@@ -19,7 +19,6 @@ import javafx.scene.text.Text;
  */
 public class MainViewController implements DialogController {
 
-    private FXMLDialog dialog;
     private AdminController controller;
     private Account[] userArray;
 
@@ -64,10 +63,14 @@ public class MainViewController implements DialogController {
 
     public void updateUser(ActionEvent actionEvent) {
         int res = listView.getSelectionModel().getSelectedIndex();
-        if(res == -1){
-            controller.showError("Error you need to choose an account");
-        }else{
-            controller.showUpdateUserDialog(userArray[res]);
+        if(controller.getCurrentUser().getUsername() == userArray[res].getUsername()){
+            controller.showError("Cant update current user");
+        }else {
+            if(res == -1){
+                controller.showError("Error you need to choose an account");
+            }else{
+                controller.showUpdateUserDialog(userArray[res]);
+            }
         }
     }
 
@@ -79,9 +82,6 @@ public class MainViewController implements DialogController {
         setListView();
     }
 
-    public FXMLDialog getDialog() {
-        return dialog;
-    }
 
     public void addUser(ActionEvent actionEvent) {
         controller.showAddUserDialog();

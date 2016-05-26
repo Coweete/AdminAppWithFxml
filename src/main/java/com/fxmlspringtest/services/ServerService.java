@@ -21,7 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by jonatan on 2016-05-08.
+ * Created by Jonatan Fridsten on 2016-05-08.
  */
 public class ServerService {
 
@@ -37,9 +37,11 @@ public class ServerService {
     private HttpHeaders headers;
 
     /**
-     * @param username
-     * @param password
-     * @return
+     * Method will start the connection to the server and try to login, if it succeed i check will be done,
+     * because the account need to have admin authorities to use the application.
+     * @param username Username for the account object
+     * @param password Password for the account object
+     * @return an Account with the correct username and password
      */
     public boolean login(String username, String password) {
         restTemplate = new RestTemplate();
@@ -92,7 +94,8 @@ public class ServerService {
     }
 
     /**
-     * @return
+     * Will get all the accounts that exists on the server
+     * @return array of the accounts in the server
      */
     public Account[] getAllUsers() {
         log.info("All users");
@@ -111,7 +114,9 @@ public class ServerService {
     }
 
     /**
-     * @param account
+     * Will send an post request to the server with the account object
+     * so it could be added in the server
+     * @param account the new account object
      */
     public void addUser(Account account) {
 
@@ -180,7 +185,7 @@ public class ServerService {
     public void updateUser(Account account) {
         log.info("Update user");
         try {
-            MultiValueMap<String,Object> body = new LinkedMultiValueMap<>();
+            MultiValueMap<String,Account> body = new LinkedMultiValueMap<>();
             body.add("Account" , account);
             HttpEntity<MultiValueMap> entity = new HttpEntity<>(body ,headers);
             log.info("Entitybody " + entity.getBody());

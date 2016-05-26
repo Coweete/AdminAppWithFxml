@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 /**
- * Created by jonatan on 2016-05-16.
+ * Created by Jonatan Fridsten on 2016-05-16.
  */
 public class AddUserController implements DialogController {
 
@@ -41,23 +41,38 @@ public class AddUserController implements DialogController {
     @FXML
     Label txtError;
 
-
+    /**
+     * Creates an object of the addUserController
+     * @param controller
+     */
     public AddUserController(AdminController controller) {
         this.adminController = controller;
     }
 
 
     @Override
+    /**
+     * Sets the connection to admincontroller
+     */
     public void setController(AdminController controller) {
         this.adminController = controller;
     }
 
+    /**
+     * Start the listener to the ardunio card and turns of the scancard button
+     * @param actionEvent listen to the scanCardButton
+     */
     public void scanCard(ActionEvent actionEvent) {
         adminController.scanCard(1);
         btnScanCard.setDisable(true);
         scanCardActive = true;
     }
 
+    /**
+     * Returns to mainview and close currentview and if
+     * the scan is active the portlistener is closed
+     * @param actionEvent listen to cancelbutton
+     */
     public void cancel(ActionEvent actionEvent) {
         //checks if the scan is active and shuts it down
         if (scanCardActive == true) {
@@ -66,17 +81,25 @@ public class AddUserController implements DialogController {
         adminController.cancel();
     }
 
+    /**
+     * Method will start when adduser button is getting pressed,
+     * and then does some check before it send an request to the server
+     * @param actionEvent listen to adduserbutton
+     */
     public void addUser(ActionEvent actionEvent) {
         Account acc = new Account();
         System.out.println("Fristname: " + firstname.getText() + "/");
+        //checks if all fields are filled
         if (firstname.getText().equals("") || lastname.getText().equals("") || passwordField1.getText().equals("") ||
                 passwordField2.getText().equals("") || rfidkey.getText().equals("")) {
             txtError.setText("Missing fields");
         } else {
             acc.setFirstName(firstname.getText());
             acc.setLastName(lastname.getText());
+            //if the passwords match
             if (passwordField1.getText().equals(passwordField2.getText())) {
                 acc.setPassword(passwordField1.getText());
+                //if we have an rfidkey
                 if (rfidkey != null) {
                     RfidKey key = new RfidKey(rfidkey.getText());
                     key.setEnabled(true);
@@ -90,7 +113,11 @@ public class AddUserController implements DialogController {
         }
     }
 
-
+    /**
+     * Method will save the rfidcard,
+     * then write it on the userinterface and turn on the scanbutton again
+     * @param rfidKey the new rfidkey
+     */
     public void writeRfidkey(RfidKey rfidKey) {
         this.key = rfidKey;
         rfidkey.setText(key.getId());
@@ -111,6 +138,9 @@ public class AddUserController implements DialogController {
      * @param scanStatus that should be delivered
      */
     public void scanStatus(String scanStatus) {
+        if(btnScanCard.isDisabled() == true){
+            btnScanCard.setDisable(false);
+        }
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

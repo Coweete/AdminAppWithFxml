@@ -127,6 +127,9 @@ public class UpdateUserController implements DialogController {
 
 
     public void writeScanAndErrorMessage(String message) {
+        if(btnScanCard.isDisabled() == true){
+            btnScanCard.setDisable(false);
+        }
         scanAndErrorMessage.setText(message);
     }
 }
