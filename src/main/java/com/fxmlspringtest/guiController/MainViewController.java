@@ -63,7 +63,7 @@ public class MainViewController implements DialogController {
 
     public void updateUser(ActionEvent actionEvent) {
         int res = listView.getSelectionModel().getSelectedIndex();
-        if(controller.getCurrentUser().getUsername() == userArray[res].getUsername()){
+        if(controller.getCurrentUser().getUsername().equals(userArray[res].getUsername())){
             controller.showError("Cant update current user");
         }else {
             if(res == -1){

@@ -25,11 +25,12 @@ import java.util.Map;
  */
 public class ServerService {
 
-    private String url = "https://projektessence.se/api/users";
-    //private String url = "http://192.168.1.46:44344/api/users";
-    private String loginUrl = "https://projektessence.se/api/account";
-    //private String loginUrl = "http://192.168.1.46:44344/api/account";
-    private String logoutUrl = "https://projektessence.se/logout";
+    //private String url = "https://projektessence.se/api/users";
+    private String url = "http://192.168.1.46:44344/api/users";
+    //private String loginUrl = "https://projektessence.se/api/account";
+    private String loginUrl = "http://192.168.1.46:44344/api/account";
+    //private String logoutUrl = "https://projektessence.se/logout";
+    private String logoutUrl = "http://192.168.1.46:44344/logout";
 
     private static final Logger log = LoggerFactory.getLogger(ServerService.class);
     private RestTemplate restTemplate;
