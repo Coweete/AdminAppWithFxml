@@ -93,7 +93,7 @@ public class RxTxService {
             adminSerialPortEventListener.setSerialPort(serialPort);
             serialPort.notifyOnDataAvailable(true);
             serialPort.addEventListener(adminSerialPortEventListener);
-            ctrl.scanStatus("Scan ur card",sceneNumber);
+            ctrl.scanStatus("Scan your card",sceneNumber);
         } catch (Exception e) {
             System.err.println(e.toString());
         }
