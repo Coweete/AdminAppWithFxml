@@ -20,7 +20,6 @@ public class UpdateUserController implements DialogController {
 
     private AdminController adminController;
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
-    private FXMLDialog dialog;
     private Account account;
     private boolean scanCardActive = false;
 

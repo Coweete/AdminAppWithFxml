@@ -28,7 +28,6 @@ import java.net.URL;
 public class LoginController implements DialogController {
 
     private AdminController controller;
-    private FXMLDialog dialog;
 
     @FXML
     Label header;
