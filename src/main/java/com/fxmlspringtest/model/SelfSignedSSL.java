@@ -7,10 +7,14 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 /**
- * Created by Sebastian Börebäck on 2016-05-24.
+ *  @author Sebastian Börebäck on 2016-05-24.
+ *  Handles SSL connection, make the java app able to communicate with a server behind SSL.
  */
 public class SelfSignedSSL {
 
+    /**
+     * Sets so that the java app will trust the server behind SSL
+     */
     public static void trustSelfSignedSSL() {
         try {
             SSLContext ctx = SSLContext.getInstance("TLS");
