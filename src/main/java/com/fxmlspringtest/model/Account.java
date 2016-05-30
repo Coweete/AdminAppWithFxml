@@ -29,8 +29,6 @@ public class Account implements UserDetails, Serializable {
     private String firstName;
     private String lastName;
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
-    public static final String ROLE_USER = "ROLE_USER";
-    public static final String ROLE_PI = "ROLE_PI";
 
     @JsonDeserialize(using = RfidKeyDeserializer.class)
     private RfidKey rfidKey;

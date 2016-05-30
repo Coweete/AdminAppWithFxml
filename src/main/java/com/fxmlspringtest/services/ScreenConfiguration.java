@@ -35,17 +35,23 @@ public class ScreenConfiguration {
     private ErrorController errorController;
     private static ScreenConfiguration instance;
 
-    private ScreenConfiguration(){
+    private ScreenConfiguration() {
 
     }
 
-    public static ScreenConfiguration getInstance(){
+    public static ScreenConfiguration getInstance() {
         if (instance == null)
             return (instance = new ScreenConfiguration());
         else
             return instance;
     }
 
+    /**
+     * Sets the connection from the main controller to all the gui controllers
+     *
+     * @param primaryStage main window
+     * @param controller   main controller
+     */
     public void init(Stage primaryStage, AdminController controller) {
         this.primaryStage = primaryStage;
         this.loginController = new LoginController(controller);
@@ -56,53 +62,103 @@ public class ScreenConfiguration {
         initStage();
     }
 
-
-    public void setLoginScene(){
+    /**
+     * Sets up the loginscreen
+     */
+    public void setLoginScene() {
         primaryStage.setTitle("Login");
-        swapScene(getSceneView(loginController,ClassLoader.getSystemResource("fxml/Login.fxml")));
+        swapScene(getSceneView(loginController, ClassLoader.getSystemResource("fxml/Login.fxml")));
         loginController.setFocus();
     }
 
-    public void setMainScene(Account account){
-        swapScene(getSceneView(mainViewController,ClassLoader.getSystemResource("fxml/mainLayout.fxml")));
+    /**
+     * Sets up the mainview with information on the current account
+     *
+     * @param account signed in account
+     */
+    public void setMainScene(Account account) {
+        swapScene(getSceneView(mainViewController, ClassLoader.getSystemResource("fxml/mainLayout.fxml")));
         primaryStage.setTitle("MainView");
         mainViewController.onStart(account);
     }
 
-    public void setAddScene(){
-        swapScene(getSceneView(addUserController,ClassLoader.getSystemResource("fxml/addscene.fxml")));
+    /**
+     * Changes to the add scene
+     */
+    public void setAddScene() {
+        swapScene(getSceneView(addUserController, ClassLoader.getSystemResource("fxml/addscene.fxml")));
         primaryStage.setTitle("AddView");
     }
-    public void setUpdateScene(Account account){
-        swapScene(getSceneView(updateUserController,ClassLoader.getSystemResource("fxml/updateScene.fxml")));
+
+    /**
+     * Changes to the update scene
+     *
+     * @param account the account we whant to update
+     */
+    public void setUpdateScene(Account account) {
+        swapScene(getSceneView(updateUserController, ClassLoader.getSystemResource("fxml/updateScene.fxml")));
         updateUserController.setUserDetails(account);
         primaryStage.setTitle("UpdateView");
     }
 
-    public FXMLDialog errorDialog(){
-        return new FXMLDialog(errorController,ClassLoader.getSystemResource("fxml/error.fxml"),
-                primaryStage,StageStyle.DECORATED,Modality.APPLICATION_MODAL);
+    /**
+     * Creates an error window that tells the user what error that has
+     *
+     * @return the error window
+     */
+    public FXMLDialog errorDialog() {
+        return new FXMLDialog(errorController, ClassLoader.getSystemResource("fxml/error.fxml"),
+                primaryStage, StageStyle.DECORATED, Modality.APPLICATION_MODAL);
     }
 
+    /**
+     * Sends the rfidkey to the adduser Controller
+     *
+     * @param rfidKey new rfid
+     */
     public void newRfidAdd(RfidKey rfidKey) {
         addUserController.writeRfidkey(rfidKey);
     }
 
+    /**
+     * Sends the new rfidkey to the updateuser controller
+     *
+     * @param rfidKey new rfid
+     */
     public void newRfidUpdate(RfidKey rfidKey) {
         updateUserController.writeRfidkey(rfidKey);
     }
 
-    public void erroHappend(String error){
+    /**
+     * Shows the error window
+     *
+     * @param error
+     */
+    public void erroHappend(String error) {
         errorDialog().show();
         errorController.setText(error);
     }
-    private void swapScene(Scene newScene){
+
+    /**
+     * Swaps the scene from the current to a new one
+     *
+     * @param newScene the new scene
+     */
+    private void swapScene(Scene newScene) {
         primaryStage.setScene(newScene);
         primaryStage.show();
     }
-    private Scene getSceneView(final DialogController controller, URL fxml){
+
+    /**
+     * Connects the fxml file with the gui controller then returns it as an scene
+     *
+     * @param controller the gui controller
+     * @param fxml       the gui file
+     * @return the new scene
+     */
+    private Scene getSceneView(final DialogController controller, URL fxml) {
         FXMLLoader loader = new FXMLLoader(fxml);
-        try{
+        try {
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {
@@ -111,40 +167,54 @@ public class ScreenConfiguration {
             });
             Scene scene = new Scene((Parent) loader.load());
             return scene;
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void initStage(){
+    /**
+     * Initalize the primary stage and sets standard values
+     */
+    private void initStage() {
         primaryStage.getIcons().add(new Image("images/Logo.png"));
         primaryStage.setMinWidth(610);
         primaryStage.setMinHeight(500);
         primaryStage.setResizable(false);
     }
 
+    /**
+     * Shows error on the login screen
+     *
+     * @param erorText the error
+     */
     public void showLoginError(String erorText) {
         loginController.setErrorText(erorText);
     }
 
     /**
      * Writes out the scan status on the correct screen
-     * @param status
-     * @param scene
+     *
+     * @param status scan status
+     * @param scene  the current scene
      */
     public void scenStatus(String status, int scene) {
-        if(scene == 1){
+        if (scene == 1) {
             addUserController.scanStatus(status);
-        }else if(scene == 2){
+        } else if (scene == 2) {
             updateUserController.writeScanAndErrorMessage(status);
         }
     }
 
+    /**
+     * Updates the scan button on add user and update user
+     *
+     * @param sceneNumber witch scene that is active
+     */
     public void updateScanNumber(int sceneNumber) {
         System.out.println("hello");
-        if(sceneNumber== 1){
+        if (sceneNumber == 1) {
             addUserController.updatScanButon();
-        }else if(sceneNumber == 2){
+        } else if (sceneNumber == 2) {
             updateUserController.updateScanButton();
         }
     }

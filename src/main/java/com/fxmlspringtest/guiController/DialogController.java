@@ -7,6 +7,10 @@ import com.fxmlspringtest.Controller.AdminController;
  */
 public interface DialogController {
 
+    /**
+     * Makes the connection to admin controller avible
+     * @param controller program controller
+     */
     void setController(AdminController controller);
 
 }

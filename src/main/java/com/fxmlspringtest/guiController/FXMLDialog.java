@@ -16,29 +16,45 @@ import java.net.URL;
 /**
  * Created by jonatan on 2016-05-08.
  */
-public class  FXMLDialog extends Stage {
-
-    public FXMLDialog(DialogController controller, URL fxml, Window owner){
-        this(controller,fxml,owner, StageStyle.DECORATED,Modality.WINDOW_MODAL);
+public class FXMLDialog extends Stage {
+    /**
+     * Contstructor to the fxmldialog, that creats an window with an selected fxml file and
+     * links to the controller
+     *
+     * @param controller the gui controller for the class
+     * @param fxml       Gui layout
+     * @param owner      the window where the fxml file should be put into
+     */
+    public FXMLDialog(DialogController controller, URL fxml, Window owner) {
+        this(controller, fxml, owner, StageStyle.DECORATED, Modality.WINDOW_MODAL);
     }
 
-    public FXMLDialog(final DialogController controller,URL fxml,Window owner,StageStyle style,Modality modality){
+    /**
+     * Creates a new window that han connection to an fxml file and an controller class,
+     *
+     * @param controller the gui controller for the class
+     * @param fxml       gui layout
+     * @param owner      the window where the fxml file should be put into
+     * @param style      sets window style
+     * @param modality   defines how the window should react to other windows
+     */
+    public FXMLDialog(final DialogController controller, URL fxml, Window owner, StageStyle style, Modality modality) {
         super(style);
         initOwner(owner);
         initModality(modality);
         FXMLLoader loader = new FXMLLoader(fxml);
-        try{
+        try {
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {
                     return controller;
                 }
             });
-            if(controller instanceof ErrorController){
+            if (controller instanceof ErrorController) {
                 ((ErrorController) controller).setDialog(this);
             }
             setScene(new Scene((Parent) loader.load()));
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

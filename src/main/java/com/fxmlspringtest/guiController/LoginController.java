@@ -25,7 +25,7 @@ import java.net.URL;
 /**
  * Created by jonatan on 2016-05-08.
  */
-public class LoginController implements DialogController{
+public class LoginController implements DialogController {
 
     private AdminController controller;
     private FXMLDialog dialog;
@@ -45,14 +45,14 @@ public class LoginController implements DialogController{
     @FXML
     Button btnSignin;
 
-    public LoginController(AdminController controller) {;
+    public LoginController(AdminController controller) {
+        ;
         this.controller = controller;
     }
 
     public void actionLogin(ActionEvent actionEvent) {
-       login();
+        login();
     }
-
 
 
     @Override
@@ -60,6 +60,9 @@ public class LoginController implements DialogController{
         this.controller = controller;
     }
 
+    /**
+     * Sets the default focus to the sign in button
+     */
     public void setFocus() {
         Platform.runLater(new Runnable() {
             @Override
@@ -70,25 +73,47 @@ public class LoginController implements DialogController{
 
     }
 
-    public void setErrorText(String errorText){
+    /**
+     * Writes out error message on the userinterface
+     *
+     * @param errorText error message
+     */
+    public void setErrorText(String errorText) {
         txtError.setText(errorText);
     }
 
+    /**
+     * Ckears the error text
+     *
+     * @param event when someting happend on the screen
+     */
     public void clearError(Event event) {
-        if(txtError.getText() != null){
+        if (txtError.getText() != null) {
             txtError.setText("");
         }
     }
 
+    /**
+     * Makes it possible to login with an enter key press instead of
+     * pressing the sign in button
+     *
+     * @param event listens to Enterbutton
+     */
     public void enterLogin(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)){
+        if (event.getCode().equals(KeyCode.ENTER)) {
             login();
         }
     }
 
+    /**
+     * Checks if username and password exists then, calls
+     * for the controller to login the user
+     */
     private void login() {
-        if(username.getText() != null && password.getText() != null){
-            controller.login(username.getText(),password.getText());
+        if (username.getText() != null && password.getText() != null) {
+            controller.login(username.getText(), password.getText());
+        }else{
+            setErrorText("Need to fill in username and password");
         }
     }
 }

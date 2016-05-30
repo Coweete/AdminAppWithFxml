@@ -23,6 +23,11 @@ public class AdminController {
     private RxTxService rxTxService;
     private AdminSerialPortEventListener eventListener = new AdminSerialPortEventListener();
 
+    /**
+     * Sets up an connection to the server
+     * @param username username
+     * @param password password
+     */
     public void login(String username, String password) {
         if (serverService.login(username, password)) {
             screens.setMainScene(currentUser);
@@ -189,6 +194,12 @@ public class AdminController {
         screens.scenStatus(status, scene);
     }
 
+    /**
+     * Creates an rfid on the active scene
+     *
+     * @param inputLine The rfid
+     * @param scene     active scene
+     */
     public void createNewRfid(String inputLine, int scene) {
         // 1 = addUser 2 = updateUser
         if (scene == 1) {
@@ -204,7 +215,6 @@ public class AdminController {
     public void initializeRxTx() {
         rxTxService.setCtrl(this);
         rxTxService.setEventHandler(eventListener);
-        //// TODO: 2016-05-19 gör så att man kan ändra denna
         rxTxService.setCompPort("COM5");
         eventListener.setController(this);
     }
@@ -227,6 +237,11 @@ public class AdminController {
         rxTxService.setCompPort(realText);
     }
 
+    /**
+     * Updates the scanbutton on the active scene
+     *
+     * @param sceneNumber active scene
+     */
     public void scanButton(int sceneNumber) {
         screens.updateScanNumber(sceneNumber);
     }

@@ -147,6 +147,9 @@ public class AddUserController implements DialogController {
         });
     }
 
+    /**
+     * Updates the scanButton if the connection too the arduino is lost
+     */
     public void updatScanButon() {
         System.out.println("Button status" + btnScanCard.isDisable());
         if(btnScanCard.isDisabled() == true){

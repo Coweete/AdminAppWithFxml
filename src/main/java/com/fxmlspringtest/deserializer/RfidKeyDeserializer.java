@@ -16,6 +16,16 @@ import java.io.IOException;
 public class RfidKeyDeserializer extends JsonDeserializer<RfidKey> {
 
 
+    /**
+     * When recieving an account object an RFID-key object attached to the user will not be recognized, this RFID-key deseralizer
+     * tells how an RFID-key object should be parsed.
+     *
+     * @param jsonParser             - parsing retrived data
+     * @param deserializationContext - Not used
+     * @return - New RFID key object
+     * @throws IOException             - Throws exception if needed
+     * @throws JsonProcessingException - Throws exception if needed
+     */
     @Override
     public RfidKey deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         ObjectCodec codec = jsonParser.getCodec();
@@ -24,6 +34,6 @@ public class RfidKeyDeserializer extends JsonDeserializer<RfidKey> {
         RfidKey key = new RfidKey();
         key.setId(node.get("id").asText());
         key.setEnabled(node.get("enabled").asBoolean());
-        return  key;
+        return key;
     }
 }

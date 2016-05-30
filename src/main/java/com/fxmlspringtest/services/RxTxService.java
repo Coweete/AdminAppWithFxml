@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 /**
- * Created by jonatan on 2016-04-27.
+ * Created by Jonatan Fridsten Sebastian Börebäck on 2016-04-27.
  */
 public class RxTxService {
 
@@ -48,7 +48,11 @@ public class RxTxService {
      */
     private static final int DATA_RATE = 9600;
 
-
+    /**
+     * Starts the initalizing from and then waits for an event that will happen
+     *
+     * @param sceneNumber witch scene that will be used
+     */
     public void initialize(int sceneNumber) {
 
         PORT_NAMES.add("/dev/tty.usbserial-A9007UX1");
@@ -89,11 +93,10 @@ public class RxTxService {
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
                     SerialPort.PARITY_NONE);
-            /// TODO: 2016-05-19 måste kolla om det fungerar att scanna mer än en gång med nya koden ?
             adminSerialPortEventListener.setSerialPort(serialPort);
             serialPort.notifyOnDataAvailable(true);
             serialPort.addEventListener(adminSerialPortEventListener);
-            ctrl.scanStatus("Scan your card",sceneNumber);
+            ctrl.scanStatus("Scan your card", sceneNumber);
         } catch (Exception e) {
             System.err.println(e.toString());
         }
@@ -130,17 +133,32 @@ public class RxTxService {
         this.adminSerialPortEventListener = eventHandler;
     }
 
+    /**
+     * Sets the computer port
+     *
+     * @param compPort the usb port where the arduino is
+     */
     public void setCompPort(String compPort) {
         this.compPort = compPort;
         PORT_NAMES.add(this.compPort);
         System.out.println("COmp port " + this.compPort);
     }
 
-    public void setCtrl(AdminController ctrl){
+    /**
+     * Sets the connection to the controller
+     *
+     * @param ctrl admin controller
+     */
+    public void setCtrl(AdminController ctrl) {
         this.ctrl = ctrl;
     }
 
-    public String getCompPort(){
+    /**
+     * returns the current usb port
+     *
+     * @return usb port number
+     */
+    public String getCompPort() {
         return this.compPort;
     }
 }

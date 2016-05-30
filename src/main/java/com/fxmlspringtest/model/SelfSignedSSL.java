@@ -7,9 +7,10 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 /**
- * Created by Sebastian on 2016-05-24.
+ * Created by Sebastian Börebäck on 2016-05-24.
  */
 public class SelfSignedSSL {
+
     public static void trustSelfSignedSSL() {
         try {
             SSLContext ctx = SSLContext.getInstance("TLS");

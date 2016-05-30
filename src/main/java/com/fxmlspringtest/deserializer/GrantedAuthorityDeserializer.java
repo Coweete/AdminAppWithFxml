@@ -35,7 +35,7 @@ public class GrantedAuthorityDeserializer extends JsonDeserializer<List<GrantedA
             auths.add(tempAuth);
         });
 
-        log.info("ret auths: "+auths.toString());
+
         return auths;
     }
 }

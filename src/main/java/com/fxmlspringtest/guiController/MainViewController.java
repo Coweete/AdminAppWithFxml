@@ -42,16 +42,22 @@ public class MainViewController implements DialogController {
     @FXML
     TextField txtArduino;
 
+    /**
+     * Constructor for the mainview controller
+     * @param controller
+     */
+    public MainViewController(AdminController controller) {
+        this.controller = controller;
+    }
+
     @Override
     public void setController(AdminController controller) {
         this.controller = controller;
     }
 
-    public MainViewController(AdminController controller) {
-        this.controller = controller;
-    }
-
-
+    /**
+     * Sets up the listview with all the accounts that is avible on the server
+     */
     public void setListView() {
         userArray = controller.getUserlist();
         if (userArray != null) {
@@ -62,6 +68,12 @@ public class MainViewController implements DialogController {
         }
     }
 
+    /**
+     * Checks if the selected account is avible for an update,
+     * if its possible for an update then sends a request to swap scene to the admincontroller
+     *
+     * @param actionEvent update button
+     */
     public void updateUser(ActionEvent actionEvent) {
         int res = listView.getSelectionModel().getSelectedIndex();
         System.out.println("Result" + res);
@@ -85,6 +97,11 @@ public class MainViewController implements DialogController {
         }
     }
 
+    /**
+     * Updates the listview then sets the text on the current user
+     *
+     * @param adminUser currentuser
+     */
     public void onStart(Account adminUser) {
         currentUser = adminUser;
         lblFirstname.setText(adminUser.getFirstName());
@@ -94,26 +111,39 @@ public class MainViewController implements DialogController {
         setListView();
     }
 
-
+    /**
+     * Calls to the controller for swap scene to the add view
+     *
+     * @param actionEvent button adduser
+     */
     public void addUser(ActionEvent actionEvent) {
         controller.showAddUserDialog();
     }
 
+    /**
+     * Checks if the account is avible for delete then sends the selected accouont to
+     * the controller with an request for deleting the account
+     *
+     * @param actionEvent button delete
+     */
     public void deleteUser(ActionEvent actionEvent) {
         int res = listView.getSelectionModel().getSelectedIndex();
+        Account selectedAccount = userArray[res];
+        System.out.println("SelectedAccount" + selectedAccount.toString());
         if (res == -1) {
             controller.showError("Error you need to choose an account");
         } else {
-            if (currentUser.getUsername().equals(userArray[res].getUsername())) {
+            if (currentUser.getUsername().equals(selectedAccount.getUsername())) {
                 controller.showError("Cant delete the selected user");
             } else {
-                for (int i = 0; i < userArray[res].getAuthorities().size(); i++) {
-                    if (userArray[res].getAuthorities().get(i).toString().equals("ROLE_PI") ||
-                            userArray[res].getAuthorities().get(i).toString().equals("ROLE_ADMIN") ) {
+                for (int i = 0; i < selectedAccount.getAuthorities().size(); i++) {
+                    if (selectedAccount.getAuthorities().get(i).toString().equals("ROLE_PI") ||
+                            selectedAccount.getAuthorities().get(i).toString().equals("ROLE_ADMIN")) {
                         System.out.println("hejdå");
                         controller.showError("Cant delete pi user");
+                        return;
                     } else {
-                        controller.deleteUser(userArray[res]);
+                        controller.deleteUser(selectedAccount);
                         setListView();
                     }
                 }
@@ -121,10 +151,18 @@ public class MainViewController implements DialogController {
         }
     }
 
+    /**
+     * Calls the logout function in the main controller
+     * @param actionEvent button logout
+     */
     public void logout(ActionEvent actionEvent) {
         controller.logout();
     }
 
+    /**
+     * Changes the arduino port, need to press enter for it to happen
+     * @param event enter pressed
+     */
     public void changePort(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             controller.changeArduinoPort(txtArduino.getText());

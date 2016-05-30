@@ -3,6 +3,8 @@ package com.fxmlspringtest.model;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
+ * @author Sebastian Börebäck, Robin Johansson
+ *
  * Constants for Spring Security authorities.
  */
 public final class AuthoritiesConstants {
