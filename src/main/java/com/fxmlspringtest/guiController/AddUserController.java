@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 /**
+ * The controller for the add User dialog
  * Created by Jonatan Fridsten on 2016-05-16.
  */
 public class AddUserController implements DialogController {
@@ -43,6 +44,7 @@ public class AddUserController implements DialogController {
 
     /**
      * Creates an object of the addUserController
+     *
      * @param controller
      */
     public AddUserController(AdminController controller) {
@@ -60,6 +62,7 @@ public class AddUserController implements DialogController {
 
     /**
      * Start the listener to the ardunio card and turns of the scancard button
+     *
      * @param actionEvent listen to the scanCardButton
      */
     public void scanCard(ActionEvent actionEvent) {
@@ -72,6 +75,7 @@ public class AddUserController implements DialogController {
     /**
      * Returns to mainview and close currentview and if
      * the scan is active the portlistener is closed
+     *
      * @param actionEvent listen to cancelbutton
      */
     public void cancel(ActionEvent actionEvent) {
@@ -85,6 +89,7 @@ public class AddUserController implements DialogController {
     /**
      * Method will start when adduser button is getting pressed,
      * and then does some check before it send an request to the server
+     *
      * @param actionEvent listen to adduserbutton
      */
     public void addUser(ActionEvent actionEvent) {
@@ -117,12 +122,13 @@ public class AddUserController implements DialogController {
     /**
      * Method will save the rfidcard,
      * then write it on the userinterface and turn on the scanbutton again
+     *
      * @param rfidKey the new rfidkey
      */
     public void writeRfidkey(RfidKey rfidKey) {
         this.key = rfidKey;
         rfidkey.setText(key.getId());
-        if(btnScanCard.isDisabled() == true){
+        if (btnScanCard.isDisabled() == true) {
             btnScanCard.setDisable(false);
         }
         Platform.runLater(new Runnable() {
@@ -136,6 +142,7 @@ public class AddUserController implements DialogController {
     /**
      * Method will get a message with the status of the scan
      * and then write it out on the screen
+     *
      * @param scanStatus that should be delivered
      */
     public void scanStatus(String scanStatus) {
@@ -152,7 +159,7 @@ public class AddUserController implements DialogController {
      */
     public void updatScanButon() {
         System.out.println("Button status" + btnScanCard.isDisable());
-        if(btnScanCard.isDisabled() == true){
+        if (btnScanCard.isDisabled() == true) {
             btnScanCard.setDisable(false);
         }
     }

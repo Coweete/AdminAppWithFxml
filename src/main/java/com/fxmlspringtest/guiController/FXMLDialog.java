@@ -14,7 +14,8 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * Created by jonatan on 2016-05-08.
+ * This class returns an fxml file linked with the controller as an fxmldialog
+ * Created by Jonatan Fridsten on 2016-05-08.
  */
 public class FXMLDialog extends Stage {
     /**

@@ -23,7 +23,8 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * Created by jonatan on 2016-05-08.
+ * Handels the login
+ * Created by Jonatan Fridsten on 2016-05-08.
  */
 public class LoginController implements DialogController {
 

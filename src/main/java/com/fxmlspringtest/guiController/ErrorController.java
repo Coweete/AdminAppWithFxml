@@ -8,7 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 /**
- * Created by jonatan on 2016-05-17.
+ * Controlls the error dialog
+ * Created by Jonatan Fridsten on 2016-05-17.
  */
 public class ErrorController implements DialogController {
 

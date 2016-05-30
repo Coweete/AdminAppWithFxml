@@ -14,7 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by jonatan on 2016-05-17.
+ * Handles the update view
+ * Created by Jonatan Fridsten on 2016-05-17.
  */
 public class UpdateUserController implements DialogController {
 

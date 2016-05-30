@@ -15,7 +15,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 /**
- * Created by jonatan on 2016-05-09.
+ * Handles the main view
+ *
+ * Created by Jonatan Fridsten on 2016-05-09.
  */
 public class MainViewController implements DialogController {
 

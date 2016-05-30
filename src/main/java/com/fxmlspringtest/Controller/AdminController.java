@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
+ * Handels the comminication between diffrent classes
+ * <p>
  * Created by Jonatan Fridsten on 2016-05-08.
  */
 @Component
@@ -25,6 +27,7 @@ public class AdminController {
 
     /**
      * Sets up an connection to the server
+     *
      * @param username username
      * @param password password
      */

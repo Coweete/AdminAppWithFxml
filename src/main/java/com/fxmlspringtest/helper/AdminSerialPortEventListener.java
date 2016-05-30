@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by seb on 2016-04-12.
+ * @author Jonatan Fridsten,Sebastian Börebäck,Johnatan Sona
+ *
+ *Edited by Jonatan for this application
  */
 
 @Component

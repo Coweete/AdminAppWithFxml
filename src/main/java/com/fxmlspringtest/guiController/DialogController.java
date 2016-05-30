@@ -3,7 +3,7 @@ package com.fxmlspringtest.guiController;
 import com.fxmlspringtest.Controller.AdminController;
 
 /**
- * Created by jonatan on 2016-05-08.
+ * Created by Jonatan Fridsten on 2016-05-08.
  */
 public interface DialogController {
 
