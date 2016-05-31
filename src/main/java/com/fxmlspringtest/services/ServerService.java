@@ -23,6 +23,8 @@ import java.util.Map;
 /**
  * Created by Jonatan Fridsten on 2016-05-08.
  * @author Jonatan Fridsten
+ *
+ * This class handles the connection between the program and server.
  */
 public class ServerService {
 
