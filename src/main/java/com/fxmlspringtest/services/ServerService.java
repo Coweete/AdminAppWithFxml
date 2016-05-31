@@ -22,9 +22,10 @@ import java.util.Map;
 
 /**
  * Created by Jonatan Fridsten on 2016-05-08.
- * @author Jonatan Fridsten
  *
- * This class handles the connection between the program and server.
+ * @author Jonatan Fridsten,Gustaf Bohlin, Sebastian Börebäck
+ *         <p>
+ *         This class handles the connection between the program and server.
  */
 public class ServerService {
 
@@ -43,6 +44,7 @@ public class ServerService {
     /**
      * Method will start the connection to the server and try to login, if it succeed i check will be done,
      * because the account need to have admin authorities to use the application.
+     *
      * @param username Username for the account object
      * @param password Password for the account object
      * @return an Account with the correct username and password
@@ -82,7 +84,7 @@ public class ServerService {
                     log.info("Account: " + adminAcc.toString());
                     controller.setCurrentUser(adminAcc);
                     return true;
-                }else{
+                } else {
                     controller.showLoginError("You don't have permission to use the application");
                 }
             }
@@ -99,15 +101,16 @@ public class ServerService {
 
     /**
      * Will get all the accounts that exists on the server
+     *
      * @return array of the accounts in the server
      */
     public Account[] getAllUsers() {
         log.info("All users");
         try {
             HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-            ResponseEntity<Account[]> responseEntity = restTemplate.exchange(url,HttpMethod.GET,requestEntity,Account[].class);
+            ResponseEntity<Account[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, Account[].class);
 
-            ResponseEntity<String> responseEntity2 = restTemplate.exchange(url,HttpMethod.GET,requestEntity,String.class);
+            ResponseEntity<String> responseEntity2 = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
             log.info(Arrays.toString(responseEntity.getBody()));
             log.info(responseEntity2.getBody());
             return responseEntity.getBody();
@@ -123,18 +126,19 @@ public class ServerService {
     /**
      * Will send an post request to the server with the account object
      * so it could be added in the server
+     *
      * @param account the new account object
      */
     public void addUser(Account account) {
 
         try {
-            MultiValueMap<String,Object> body = new LinkedMultiValueMap<>();
-            body.add("Account" , account);
-            HttpEntity<MultiValueMap> entity = new HttpEntity<>(body ,headers);
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+            body.add("Account", account);
+            HttpEntity<MultiValueMap> entity = new HttpEntity<>(body, headers);
             log.info("Entitybody " + entity.getBody());
             log.info("Entity " + entity.toString());
 
-            ResponseEntity<Account> responseEntity = restTemplate.exchange(url+"/a",HttpMethod.POST,entity,Account.class);
+            ResponseEntity<Account> responseEntity = restTemplate.exchange(url + "/a", HttpMethod.POST, entity, Account.class);
             log.info("AddBody: " + responseEntity.toString());
             log.info("Add user: " + responseEntity.getStatusCode().toString());
         } catch (HttpClientErrorException http) {
@@ -169,12 +173,12 @@ public class ServerService {
      */
     public void deleteUser(Account account) {
         log.info(account.toString());
-        MultiValueMap<String,Object> body = new LinkedMultiValueMap<>();
-        body.add("Account" , account);
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("Account", account);
         HttpEntity<MultiValueMap> entity = new HttpEntity<>(headers);
         try {
-            ResponseEntity<Account> responseEntity = restTemplate.exchange(url + "/" + account.getId(),HttpMethod.DELETE,
-                    entity,Account.class);
+            ResponseEntity<Account> responseEntity = restTemplate.exchange(url + "/" + account.getId(), HttpMethod.DELETE,
+                    entity, Account.class);
             log.info("Deleted" + responseEntity.getBody());
         } catch (HttpClientErrorException e) {
             log.error(e.toString());
@@ -192,13 +196,13 @@ public class ServerService {
     public void updateUser(Account account) {
         log.info("Update user");
         try {
-            MultiValueMap<String,Account> body = new LinkedMultiValueMap<>();
-            body.add("Account" , account);
-            HttpEntity<MultiValueMap> entity = new HttpEntity<>(body ,headers);
+            MultiValueMap<String, Account> body = new LinkedMultiValueMap<>();
+            body.add("Account", account);
+            HttpEntity<MultiValueMap> entity = new HttpEntity<>(body, headers);
             log.info("Entitybody " + entity.getBody());
             log.info("Entity " + entity.toString());
 
-            ResponseEntity<Account> responseEntity = restTemplate.exchange(url+"/a",HttpMethod.PUT,entity,Account.class);
+            ResponseEntity<Account> responseEntity = restTemplate.exchange(url + "/a", HttpMethod.PUT, entity, Account.class);
             log.info(responseEntity.getBody().toString());
             log.info(responseEntity.getStatusCode().toString());
         } catch (HttpClientErrorException http) {
@@ -214,9 +218,9 @@ public class ServerService {
      * This metod will encrypt the username and password
      * so that its not avible to se easy
      *
-     * @param username
-     * @param password
-     * @return
+     * @param username username
+     * @param password pasword
+     * @return encrypted password and username
      */
     private String encryptAuthentication(String username, String password) {
         String plainCreds = username + ":" + password;
@@ -227,7 +231,7 @@ public class ServerService {
 
 
     /**
-     * This metod connects
+     * This metod connects this service with the controller
      *
      * @param controller
      */
@@ -235,19 +239,18 @@ public class ServerService {
         this.controller = controller;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
-
+    /**
+     * This will tell the server that the user wants to logout from the server
+     */
     public void logout() {
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-        try{
-            ResponseEntity<String> responseEntity = restTemplate.exchange(logoutUrl,HttpMethod.POST,httpEntity,String.class);
+        try {
+            ResponseEntity<String> responseEntity = restTemplate.exchange(logoutUrl, HttpMethod.POST, httpEntity, String.class);
             log.info(responseEntity.getStatusCode().toString());
-        }catch (HttpClientErrorException e){
+        } catch (HttpClientErrorException e) {
             log.info("HttpLogout " + e.toString());
-        }catch (Exception e){
+        } catch (Exception e) {
             log.info("Logout " + e.toString());
         }
     }
