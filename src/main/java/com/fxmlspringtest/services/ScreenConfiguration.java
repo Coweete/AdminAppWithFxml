@@ -22,6 +22,7 @@ import java.net.URL;
 
 /**
  * Created by Jonatan Fridsten on 2016-05-08.
+ * @author Jonatan Fridsten
  */
 public class ScreenConfiguration {
 

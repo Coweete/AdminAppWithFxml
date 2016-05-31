@@ -17,7 +17,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * Created by jonatan on 2016-04-28.
+ * @author Sebastian Börebäck, Anton Hellbe on 2016-04-22.
+ * Account model used to define account
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Account implements UserDetails, Serializable {
